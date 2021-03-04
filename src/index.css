@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  position:relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --font-main: 'Open Sans', sans-serif;
+  --color-primary: #ffee93;
+  --color-primary-semidark: #f5d782;
+  --color-secondary:#e97878;
+  --color-secondary-semidark:#9b5151;
+  --color-white:rgb(218, 218, 218);
+  --color-black:rgba(26, 26, 26, 0.815);
+  --color-blue:#749db8;
+  --color-green:#80b18a;
+  --color-red:#d34e4e;
+}
+
+body{
+  font-family: var(--font-main);
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  height:100vh;
+  width:100vw;
+  color:var(--color-black);
+  box-sizing: border-box;
+
+}
+
+#root{
+  background:linear-gradient(var(--color-primary),var(--color-primary-semidark));
+  width:100%;
+  height:100vh;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
