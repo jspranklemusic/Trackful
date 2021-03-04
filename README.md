@@ -1,3 +1,9 @@
+# Trackful 
+
+A snappy, easy-to-use Time Tracker coded with React, Firebase, and Framer-Motion. Note; for this project to work, you will need to create an .env file
+and supply it with your own API from Firebase.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
