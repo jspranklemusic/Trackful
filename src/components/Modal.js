@@ -47,7 +47,7 @@ const Button = styled.button`
 const Modal = props => {
 
     const changePassword = async ()=>{
-        fetch(`https://time-tracker-294716-default-rtdb.firebaseio.com/users/${props.userID}.json`,{
+        fetch(`${process.env.REACT_APP_FIREBASE_DATABASE_URL}users/${props.userID}.json`,{
             method:"PUT",
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({

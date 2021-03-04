@@ -122,6 +122,7 @@ function App() {
 
   const logOut = ()=>{
     setLoggedIn(false)
+    setLoggingIn(true)
     setUsername("")
     setPassword("")
     clearLocalStorage()
