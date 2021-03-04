@@ -97,7 +97,8 @@ function App() {
     return false
   }
 
-  const loginAuth = async ()=>{
+  const loginAuth = async (e)=>{
+    e.preventDefault()
     const valid = await checkUsername(true)
     if( valid ) {
       setLoggedIn(true)
@@ -138,7 +139,8 @@ function App() {
   }
 
 
-  const registerAuth = async ()=>{
+  const registerAuth = async (e)=>{
+    e.preventDefault()
     if(!validate()) return
     if( await checkUsername() ) return setError("Username already exists.")
 
@@ -240,6 +242,7 @@ function App() {
       {!loggedIn && loggingIn &&
       
       <Login>
+        <form onSubmit={loginAuth}>
         <h2>Log In</h2>
         <div className="form-control">
           <input value={username} onChange={e=>setUsername(e.target.value)} placeholder="username" type="text"/>
@@ -247,16 +250,17 @@ function App() {
         <div className="form-control">
           <input value={password} onChange={e=>setPassword(e.target.value)}  placeholder="password" type="password"/>
         </div>
-        <button onClick={loginAuth}>Login</button>
+        <button type="submit">Login</button>
         <p>Or <a onClick={()=>setLoggingIn(false)}  href="#">register.</a></p>
         <br/>
-        
+        </form>
       </Login> }
 
 
       {/* A register page */}
       {!loggedIn && !loggingIn &&
       <Login>
+        <form onSubmit={registerAuth}>
         <h2>Register</h2>
         <div className="form-control">
           <input value={username} onChange={e=>setUsername(e.target.value)} placeholder="username" type="text"/>
@@ -264,11 +268,11 @@ function App() {
         <div className="form-control">
           <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" type="password"/>
         </div>
-        <button onClick={registerAuth}>Register</button>
+        <button type="submit">Register</button>
         <br/>
         <p>Or <a onClick={()=>setLoggingIn(true)} href="#">login.</a></p>
         <br/>
-        
+        </form>
       </Login>}
 
 

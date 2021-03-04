@@ -46,7 +46,8 @@ const Button = styled.button`
 
 const Modal = props => {
 
-    const changePassword = async ()=>{
+    const changePassword = async (e)=>{
+        e.preventDefault();
         fetch(`${process.env.REACT_APP_FIREBASE_DATABASE_URL}users/${props.userID}.json`,{
             method:"PUT",
             headers:{'Content-Type':'application/json'},
@@ -68,8 +69,10 @@ const Modal = props => {
     >
     <Div>
         <h3>New Password:</h3>
+        <form onSubmit={changePassword}>
         <input onChange={e=>props.setPassword(e.target.value)} type="password"/>
-        <Button onClick={changePassword}>Change Password</Button>
+        <Button type="submit" onClick={changePassword}>Change Password</Button>
+        </form>
     </Div>
     </motion.div>
     )
