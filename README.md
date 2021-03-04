@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Trackful 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A snappy, easy-to-use Time Tracker coded with React, Firebase, and Framer-Motion. Note; for this project to work, you will need to create an `.env` file
+and supply it with your own API from Firebase. For this project, one of the challenges was getting the app to run in the background on mobile. 
+For earlier attempts, I tried to increment the counter manually every second, which of course, doesn't work in the background.
+
+## The Method
+
+For the tracking method, there are 3 time snapshots which I compare, all using the `Date.now()` method. 
+
+1. The initial time the tracker was created
+2. The time that the 'play' button was pressed
+3. The current time
+
+To keep track, Trackful keeps the 3rd variable as a base, and then checks for differences every second between the 1st and 2nd, adding them together.
+This way, the app still works even if you close it. The active state of the timer is also stored in Firebase.
+
 
 ## Available Scripts
 
