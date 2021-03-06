@@ -25,7 +25,7 @@ const Div = styled.div`
         margin:0.5rem 0;
         transition:0.2s;
         &:focus{
-            background:pink;
+            background:var(--color-secondary-light);
         }
     }
 

@@ -1,0 +1,5 @@
+export const CRAYON = 'CRAYON'
+export const OCEAN = 'OCEAN'
+export const DARK = 'DARK'
+export const MODERN = 'MODERN'
+export const FOREST = 'FOREST'

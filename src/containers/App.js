@@ -8,6 +8,7 @@ import Login from '../components/Login'
 import FlexButtonRow from '../components/FlexButtonRow'
 import {checkLocalStorage, setLocalStorage, clearLocalStorage} from '../localstorage/localStorageFunctions'
 import {motion, AnimatePresence  } from 'framer-motion'
+import { useSelector,  useDispatch } from 'react-redux'
 
 
 function App() {
@@ -19,17 +20,31 @@ function App() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isChangingPass, setIsChangingPass] = useState(false)
+  const colorSchemes = useSelector(state=>state.colorSchemes)
+  const dispatch = useDispatch()
 
-
+  function changeColors(){
+    for(let color in colorSchemes[colorSchemes.current]){
+      document.documentElement.style.setProperty(color, colorSchemes[colorSchemes.current][color]);
+    }
+  }
 
   useEffect(()=>{
-    checkLocalStorage({
+    changeColors()
+    updateColorInDatabase()
+  },[colorSchemes.current])
+  
+
+  useEffect(()=>{
+   checkLocalStorage({
       setUsername,
       setPassword,
       setUserID,
       setLoggedIn,
-      setTrackers
+      setTrackers,
+      dispatch
     })
+  
   },[])
 
   
@@ -40,6 +55,15 @@ function App() {
       updateTrackers(modifiedTrackers)
       setTrackers([...modifiedTrackers])
       
+  }
+
+  const updateColorInDatabase = async()=>{
+    if(!userID) return
+    await fetch(process.env.REACT_APP_FIREBASE_DATABASE_URL+`users/${userID}/color.json`,{
+      method:"PUT",
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(colorSchemes.current)
+    })
   }
 
   const updateTrackers = async (updatedTrackers)=>{
@@ -84,11 +108,16 @@ function App() {
     }else{
       for(let user in data){
         if(data[user].username===username && data[user].password===password){
+
           setUserID(user)
+
           if(data[user].trackers){
             setTrackers([...data[user].trackers])
           }
-          
+
+          if(data[user].color)
+          dispatch({type:data[user].color})
+
           return true    
         }
       }
@@ -108,7 +137,7 @@ function App() {
           password,
           userID
         })
-      },1)
+      },10)
       setError("")
     }else{
       setError("Invalid login credentials.")
@@ -162,7 +191,7 @@ function App() {
         setLocalStorage({
           username,
           password,
-          userID
+          userID:data.name
         })
       },1)
       
@@ -173,6 +202,8 @@ function App() {
 
    
   }
+
+ 
 
   const trackersArr = trackers.map(tracker=>(
 
@@ -250,7 +281,7 @@ function App() {
         <div className="form-control">
           <input value={password} onChange={e=>setPassword(e.target.value)}  placeholder="password" type="password"/>
         </div>
-        <button type="submit">Login</button>
+        <button value="submit" type="submit">Login</button>
         <p>Or <a onClick={()=>setLoggingIn(false)}  href="#">register.</a></p>
         <br/>
         </form>

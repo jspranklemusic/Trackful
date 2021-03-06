@@ -22,7 +22,7 @@ color:var(--color-secondary-semidark);
     transition:0.2s;
     outline:none;
     &:focus{
-        background:pink;
+        background:var(--color-secondary-light);
     }
 }
 

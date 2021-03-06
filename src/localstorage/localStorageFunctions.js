@@ -7,15 +7,18 @@ export const checkLocalStorage = (args)=>{
       args.setUserID(localStorage.userID)
       args.setLoggedIn(true)
       
-      setTimeout(async ()=>{
-        const response = await fetch(`${process.env.REACT_APP_FIREBASE_DATABASE_URL}users/${localStorage.userID}/trackers.json`)
-        const data = await response.json()
-        if(data) args.setTrackers(data)
-      },10)
       
+      setTimeout(async ()=>{
+        const response = await fetch(`${process.env.REACT_APP_FIREBASE_DATABASE_URL}users/${localStorage.userID}.json`)
+        const data = await response.json()
+        if(data.trackers) args.setTrackers(data.trackers)
+        if(data.color) args.dispatch({type:data.color}); else args.dispatch({type:"CRAYON"})
+      },10)
+
       
     }else{
       args.setTrackers([])
+      args.dispatch({type:"CRAYON"})
     }
   }
 

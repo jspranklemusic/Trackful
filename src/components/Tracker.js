@@ -148,7 +148,7 @@ class Tracker extends Component{
     render(){
 
         const timerStyle = {
-            color:this.state.timer ? 'maroon' : 'rgba(0,0,0,0.500)',
+            color:this.state.timer ? 'var(--color-red)' : 'rgba(0,0,0,0.500)',
             border:'3px solid rgba(0,0,0,0.200)',
             padding:'1rem 2rem',
             borderRadius:'5px',

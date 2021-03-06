@@ -27,15 +27,15 @@ overflow:hidden;
 
 & .blue{
     background:var(--color-blue);
-    color:#181942;
+    color:var(--color-blue-dark);
 }
 & .green{
     background:var(--color-green);
-    color:#0c5716;
+    color:var(--color-green-dark);
 }
 & .red{
     background:var(--color-red);
-    color:#521313;
+    color:var(--color-red-dark);
 }
 `
 export default FlexButtonRow
